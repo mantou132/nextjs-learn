@@ -4,7 +4,6 @@ import Head from 'next/head';
 import Date from '../components/date';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
-import styles from '../styles/Home.module.css';
 import { getSortedPostsData } from '../lib/posts';
 
 export async function getStaticProps() {
@@ -16,7 +15,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ allPostsData }) {
+export default function Home({ allPostsData }: Awaited<ReturnType<typeof getStaticProps>>['props']) {
   return (
     <Layout home>
       <Head>

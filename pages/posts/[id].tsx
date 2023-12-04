@@ -1,9 +1,11 @@
+import { GetStaticProps,  } from 'next'
 import Head from 'next/head';
 import Layout from '../../components/layout';
 import utilStyles from '../../styles/utils.module.css';
 import { getAllPostIds, getPostData } from '../../lib/posts';
+import Date from '../../components/date';
 
-export default function Post({ postData }) {
+export default function Post({ postData }: Awaited<ReturnType<typeof getStaticProps>>['props']) {
   return (
     <Layout>
       <Head>
@@ -28,11 +30,11 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
-  const postData = await getPostData(params.id);
+export const getStaticProps = (async ({ params }) => {
+  const postData = await getPostData(params!.id);
   return {
     props: {
       postData,
     },
   };
-}
+}) satisfies GetStaticProps<any, {id: string}>
