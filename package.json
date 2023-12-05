@@ -6,11 +6,13 @@
     "start": "next start"
   },
   "dependencies": {
+    "@mantou/gem": "^1.7.0",
     "date-fns": "^2.30.0",
+    "duoyun-ui": "^1.0.0",
     "gray-matter": "^4.0.3",
     "next": "latest",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "^0.0.0-experimental-5dd35968b-20231201",
+    "react-dom": "^0.0.0-experimental-5dd35968b-20231201",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1"
   },

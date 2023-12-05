@@ -2,11 +2,11 @@ import Link from 'next/link';
 import Head from 'next/head';
 import styles from './layout.module.css';
 import utilStyles from '../styles/utils.module.css';
+import DuoyunAvatarGroup from 'duoyun-ui/react/DuoyunAvatarGroup'
 
-const name = 'Mantou';
 export const siteTitle = 'Mantou Blog';
 
-export default function Layout({ children, home }: {children: React.ReactNode, home?: boolean}) {
+export default function Layout({ children, layout }: { children: React.ReactNode, layout?: string }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -24,22 +24,40 @@ export default function Layout({ children, home }: {children: React.ReactNode, h
         <meta name="og:title" content={siteTitle} />
       </Head>
       <header className={styles.header}>
-        {home ? (
-          <>
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
-          </>
-        ) : (
-          <>
-            <h2 className={utilStyles.headingLg}>
-              <Link href="/" className={utilStyles.colorInherit}>
-                {name}
+        {layout === 'home' ? (
+          <div className={styles.header}>
+            <DuoyunAvatarGroup
+              data={
+                [{
+                  src: "https://api.dicebear.com/5.x/bottts-neutral/svg",
+                  size: "large",
+                  square: false,
+                }]
+              }
+            >
+            </DuoyunAvatarGroup>
+            <h2>
+              <Link href="/ce-test" className={utilStyles.colorInherit}>
+                Custom Element Test
               </Link>
             </h2>
-          </>
+          </div>
+        ) : layout === 'test' ? '' : (
+          <Link href="/" className={utilStyles.colorInherit}>
+            <DuoyunAvatarGroup
+              data={
+                [{
+                  src: "https://api.dicebear.com/5.x/bottts-neutral/svg",
+                  size: "large",
+                  square: true,
+                }]
+              }>
+            </DuoyunAvatarGroup>
+          </Link>
         )}
       </header>
       <main>{children}</main>
-      {!home && (
+      {layout !== 'home' && (
         <div className={styles.backToHome}>
           <Link href="/">← Back to home</Link>
         </div>

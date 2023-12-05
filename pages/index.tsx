@@ -17,7 +17,7 @@ export async function getStaticProps() {
 
 export default function Home({ allPostsData }: Awaited<ReturnType<typeof getStaticProps>>['props']) {
   return (
-    <Layout home>
+    <Layout layout='home'>
       <Head>
         <title>{siteTitle}</title>
       </Head>
