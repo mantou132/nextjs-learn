@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Head from 'next/head';
 import styles from './layout.module.css';
 import utilStyles from '../styles/utils.module.css';
-import DuoyunAvatarGroup from 'duoyun-ui/react/DuoyunAvatarGroup'
+import DyAvatar from 'duoyun-ui/react/DyAvatar'
 
 export const siteTitle = 'Mantou Blog';
 
@@ -26,16 +26,12 @@ export default function Layout({ children, layout }: { children: React.ReactNode
       <header className={styles.header}>
         {layout === 'home' ? (
           <div className={styles.header}>
-            <DuoyunAvatarGroup
-              data={
-                [{
-                  src: "https://api.dicebear.com/5.x/bottts-neutral/svg",
-                  size: "large",
-                  square: false,
-                }]
-              }
+            <DyAvatar
+              src="https://api.dicebear.com/5.x/bottts-neutral/svg"
+              size="large"
+              square={false}
             >
-            </DuoyunAvatarGroup>
+            </DyAvatar>
             <h2>
               <Link href="/ce-test" className={utilStyles.colorInherit}>
                 Custom Element Test
@@ -44,24 +40,24 @@ export default function Layout({ children, layout }: { children: React.ReactNode
           </div>
         ) : layout === 'test' ? '' : (
           <Link href="/" className={utilStyles.colorInherit}>
-            <DuoyunAvatarGroup
-              data={
-                [{
-                  src: "https://api.dicebear.com/5.x/bottts-neutral/svg",
-                  size: "large",
-                  square: true,
-                }]
-              }>
-            </DuoyunAvatarGroup>
+          <DyAvatar
+              src="https://api.dicebear.com/5.x/bottts-neutral/svg"
+              size="large"
+              square={true}
+            >
+            </DyAvatar>
           </Link>
-        )}
-      </header>
+        )
+        }
+      </header >
       <main>{children}</main>
-      {layout !== 'home' && (
-        <div className={styles.backToHome}>
-          <Link href="/">← Back to home</Link>
-        </div>
-      )}
-    </div>
+      {
+        layout !== 'home' && (
+          <div className={styles.backToHome}>
+            <Link href="/">← Back to home</Link>
+          </div>
+        )
+      }
+    </div >
   );
 }
